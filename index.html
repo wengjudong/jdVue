@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>jdVue Demo</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>{{ message }}</div>
+      <div>{{obj.test}}</div>
+      <div v-html="test"></div>
+      <input type="text" v-model="model" />
+      <input type="text" v-model="model" />
+      <div>{{model}}</div>
+      <button @click="click">vue</button>
+    </div>
+  </body>
+  <script src="./index.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello jdVue',
+        test: '<strong>我是粗体</strong>',
+        obj: {
+          test: '测试',
+        },
+        model: '',
+      },
+      methods: {
+        click() {
+          console.log(this.message);
+          this.model = '双向绑定成功';
+        },
+      },
+    });
+  </script>
+</html>
