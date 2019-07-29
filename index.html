@@ -15,6 +15,8 @@
       <input type="text" v-model="model" />
       <div>{{model}}</div>
       <button @click="click">vue</button>
+      <div v-show="show"></div>
+      <div v-show="false">aaa</div>
     </div>
   </body>
   <script src="./index.js"></script>
@@ -28,6 +30,7 @@
           test: '测试',
         },
         model: '',
+        show: false
       },
       methods: {
         click() {

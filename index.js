@@ -98,6 +98,19 @@ class Vue {
             this.methods[attrVal] && this.methods[attrVal].bind(this)();
           });
         }
+        // v-show 渲染
+        if (node.hasAttribute('v-show')) {
+          let attrVal = node.getAttribute('v-show');
+          if(this.data.hasOwnProperty(attrVal)){
+            if(!this.data[attrVal]) {
+              node.style.display = 'none';
+            }
+          }else {
+            if(!Boolean(JSON.parse(attrVal))) {
+              node.style.display = 'none';
+            }
+          }
+        }
       }
     }
   }
@@ -107,8 +120,7 @@ class Vue {
       txt = node.textContent;
     if (reg.test(txt)) {
       node.textContent = txt.replace(reg, (matched, value) => {
-        // value = value.trim();
-        console.log(arguments);
+        value = value.trim();
         let template = this.watcherTask[value] || [];
         template.push(new Watcher(node, this, value, type));
         if (value.split('.').length > 1) {
